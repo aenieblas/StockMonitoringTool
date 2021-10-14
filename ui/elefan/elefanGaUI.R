@@ -115,13 +115,13 @@ tabElefanGa <- function(id) {
                 bsModal("info_season", "Seasonal model", ns("infoSeason"),
                         size = "large",
                         p("This checkbox allows to use the seasonal model (or seasonalised von Bertalanffy growth (VBG) curve) which enables the calculation of the seasonal growth parameters (",
-                          withMathJax("\\(C\\)"), " and ", withMathJax("\\(t_{s}\\)"), "). The use of the seasonalised VBG is recommend if strong seasonality in the growth of the fish is expected, for instance, due to strong seasonal temperature differences in temperate regions. Note, that the estimation of the two additional parameters of the seasonalised VBG might increase the data requirements and, thus, uncertainty if the cohort signals in the data are poor." )),
+                          withMathJax("\\(C\\)"), " and ", withMathJax("\\(t_{s}\\)"), "). The use of the seasonalised VBG is recommended if strong seasonality in the growth of the fish is expected, for instance, due to strong seasonal temperature differences in temperate regions. Note, that the estimation of the two additional parameters of the seasonalised VBG might increase the data requirements and, thus, uncertainty if the cohort signals in the data are poor." )),
 
                 bsModal("info_C", withMathJax("\\(C\\)"), ns("infoC"),
                         size = "large",
                         p("The amplitude of the oscillation (", withMathJax("\\(C\\)"), ") of the seasonalised von Bertalanffy growth (VBG) curve. The higher the value of C, the more pronounced the seasonal oscillations are. C = 0 implies that there is no seasonality in the growth rate. If C = 1, the growth rate becomes zero at the winter point (",withMathJax("\\(WP = 0.5 - t_s\\)"),"). Values of C>1 would imply that the individuals shrink in length. Possible values for C are between 0 and 1, which is also equal to the default search space for this parameter. Generally, it is not recommended to decrease the search space for this parameter.")),
 
-                bsModal("info_ts", withMathJax("\\(t_\\s\\)"), ns("infots"),
+                bsModal("info_ts", withMathJax("\\(t_{s}\\)"), ns("infots"),
                         size = "large",
                         p("The summer point (", withMathJax("\\(t_{s}\\)"), ") of the seasonalised von Bertalanffy growth (VBG) curve defines the point in time where the seasonally varying growth rate is the largest represented by the fraction of the calendar year, e.g. 0.25 corresponds to April 1st. Values for this field are between 0 and 1, which is also equal to the default search space for this parameter. Generally, it is not recommended to decrease the search space for this parameter.")),
 
@@ -178,7 +178,7 @@ tabElefanGa <- function(id) {
 
                 bsModal("info_mat", "Maturity (optional)", ns("infoMat"),
                         size = "large",
-                        HTML("<p>If available, maturity information about your species can be provided and allows estimation of the current Spawning Potential Ratio (SPR) and SPR-related reference points. The model assumes a logistic maturity ogive. <br><br>Maturity information can be provided (i) in terms of the length at 50% and 75% maturity ('Define Lm50 & Lm75'), (ii) in terms of the length at 50% maturity and the maturation width, which is the difference between the length at 75% maturity and 25% maturity ('Define Lm50 & (Lm75-Lm25)'), or (iii) in terms of two specified lengths (LmX1 and LmX2) at specified probabilities of maturity (mX1 and mX2) ('Other'). <br><br>Ideally, maturity information is collected directly from the stock under study e.g. by determining the maturation states of the gonads. Alternatively, you may find maturity information about your species on <a href='http://www.fishbase.org/search.php' target='blank_'> FishBase</a> or <a href='https://www.sealifebase.ca' target='blank_'> SeaLifeBase</a>  for invertebrates.</p>")
+                        HTML("<p>If available, maturity information about your species can be provided and allows estimation of the current Spawning Potential Ratio (SPR) and SPR-related reference points. The model assumes a logistic maturity ogive. <br><br>Maturity information can be provided (i) in terms of the length at 50% and 75% maturity ('Define Lm50 & Lm75'), (ii) in terms of the length at 50% maturity and the maturation width, which is the difference between the length at 75% maturity and 25% maturity ('Define Lm50 & (Lm75-Lm25)'), or (iii) in terms of two specified lengths (LmX1 and LmX2) at specified probabilities of maturity (mX1 and mX2) ('Other'). <br><br>Ideally, maturity information is collected directly from the stock under study e.g. by determining the maturity stages of the gonads. Alternatively, you may find maturity information about your species on <a href='http://www.fishbase.org/search.php' target='blank_'> FishBase</a> or <a href='https://www.sealifebase.ca' target='blank_'> SeaLifeBase</a>  for invertebrates.</p>")
                         ),
 
                 bsModal("info_select", "Gear selectivity", ns("infoSelect"),
@@ -629,7 +629,7 @@ tabElefanGa <- function(id) {
                                                     div(
                                                         id ="ui_per_lm1",
                                                         numericInput(ns("per_lm1_user"),
-                                                                     p("Prob. of maturation (", withMathJax("\\(mX_{1}\\)"),")"),
+                                                                     p("Prob of maturity (", withMathJax("\\(mX_{1}\\)"),")"),
                                                                      value = NULL,
                                                                      min = 0, step = 1, max = 100,
                                                                      width = "90%")
@@ -659,7 +659,7 @@ tabElefanGa <- function(id) {
                                                     div(
                                                         id ="ui_wqsm",
                                                         numericInput(ns("wqsm_user"),
-                                                                     p("Width (",withMathJax("\\(L_{m75}-L_{m25}\\)")),
+                                                                     p("Width (",withMathJax("\\(L_{m75}-L_{m25}\\)"),")"),
 
                                                                      value = NULL, min = 0, step = 1,
                                                                      width = "60%")
@@ -668,7 +668,7 @@ tabElefanGa <- function(id) {
                                                     div(
                                                         id ="ui_per_lm2",
                                                         numericInput(ns("per_lm2_user"),
-                                                                     p("Prob. of maturation (",withMathJax("\\(mX_{2}\\)"),")"),
+                                                                     p("Prob of maturity (",withMathJax("\\(mX_{2}\\)"),")"),
                                                                      value = NULL,
                                                                      min = 0, step = 1, max = 100,
                                                                      width = "90%")
@@ -859,7 +859,7 @@ tabElefanGa <- function(id) {
                                          ##                                         column(1),
                                          column(2,
                                                 div(style = "margin-top:32px; margin-left:20px;",
-                                                    p("Length at 50% selectivity (",withMathJax("\\(L_{50}\\)"),")"))
+                                                    p("Length at 50% selectivity, ",withMathJax("\\(L_{50}\\)")))
                                                 ),
                                          column(1,
                                                 numericInput(ns("lcRangeSteps"),
