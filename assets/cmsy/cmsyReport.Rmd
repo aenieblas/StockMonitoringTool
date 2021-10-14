@@ -21,7 +21,7 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 
 **Resilience rate** : `r min(input$resiliance)` to `r max(input$resiliance)`
 
-### Deplation
+### Depletion
 
 **Starting depletion range (B/k)** : `r min(input$stb)` to `r max(input$stb)`
 
